@@ -10,7 +10,7 @@
   - [4.2. Debugging Keystone in QEMU](#42-debugging-keystone-in-qemu)
 
 
->This is the QEMU demo documentation from the [keyston docs](http://docs.keystone-enclave.org/en/latest/Getting-Started/Running-Keystone-with-QEMU.html)
+>This is the QEMU demo documentation from the [keystone docs](http://docs.keystone-enclave.org/en/latest/Getting-Started/Running-Keystone-with-QEMU.html)
 
 # 1. Setup Repository
 
