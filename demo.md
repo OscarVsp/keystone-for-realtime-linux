@@ -21,7 +21,7 @@
 
 - Dependencies and keystone setup: `sudo ./setup.sh`
 - Build keystone: `./build.sh`
-- Rebuild keystone (also copy the example from **/enclave_examples**): `./rebuild.sh`
+- Rebuild keystone (also copy the example from **/enclave_examples**): `./rebuild_example.sh`
 - Connect to the qemu terminal: `./qemu_connect.sh`
 - Clean the entire keystone install: `./clean.sh`
 
