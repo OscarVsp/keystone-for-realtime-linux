@@ -13,6 +13,7 @@ Demo with measurable impact !
 ## Questions
 
 - Time mode (S mode ? M mode ?)
+- Change the number of cores/thread in qemu ? -> `make run QEMU_SMP=n`
 
 ## Additional features required for rt on keystone
 
