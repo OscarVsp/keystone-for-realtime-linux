@@ -3,4 +3,4 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cd $SCRIPT_DIR/keystone
 
-make run
+make run QEMU_SMP=1
