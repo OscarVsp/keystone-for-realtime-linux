@@ -6,14 +6,14 @@ import inquirer
 import argparse
 import os
 
-def load(name, cpu=4):
+def load(name):
     
     data = pd.read_table(
         name,
         sep=":",
         names=["Thread", "Interval", "Latency"],
         
-        skiprows=cpu+3,
+        skiprows=0,
     )
 
     print(f'Avg:\t{data["Latency"].mean()}')
@@ -72,18 +72,18 @@ if __name__ == "__main__":
     questions = [
         inquirer.Text('target_name', message="Enter the target name", default="hifive_unmatched"),
         inquirer.Text('target_type', message="Enter the target type", default="stock"),
-        inquirer.Text('cpu', message="Enter the number of CPUs", default="4"),
+        inquirer.Text('thread', message="Enter the number of Thread", default="4"),
     ]
     answers = inquirer.prompt(questions)
     args = argparse.Namespace(**answers)
-    args.cpu = int(args.cpu)
+    args.thread = int(args.thread)
 
-    target_path = f"targets/{args.target_name}/{args.target_type}"
+    target_path = f"results/{args.target_name}/{args.target_type}"
 
-    data = load(f"{target_path}/logs/cyclictest.log", args.cpu)
+    data = load(f"{target_path}/{args.target_name}_{args.target_type}_{args.thread}_cyclictest.log")
     plot = draw_hist(data)
     #plot.set_title(f"{args.target_name}\n{args.target_type}")
-    save(plot, f"{args.target_name}_{args.target_type}", f"{target_path}/images")
+    save(plot, f"{args.target_name}_{args.target_type}_{args.thread}_histo", f"{target_path}")
     plt.clf()
 
 

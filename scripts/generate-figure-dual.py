@@ -13,7 +13,7 @@ def load(name, cpu=4):
         sep=":",
         names=["Thread", "Interval", "Latency"],
         
-        skiprows=cpu+3,
+        skiprows=9,
     )
 
     print(f'Avg:\t{data["Latency"].mean()}')
@@ -46,7 +46,7 @@ def draw_hist(data1, data2, label1="Dataset 1", label2="Dataset 2"):
     # Plot first histogram
     sns.histplot(data=data1,
                  x="Latency",
-                 bins=bins,
+                 bins=bin_edges,
                  color=colors[0],
                  label=label1,
                  ax=ax)
@@ -70,22 +70,24 @@ def draw_hist(data1, data2, label1="Dataset 1", label2="Dataset 2"):
 if __name__ == "__main__":
 
 
-    boards = [ "beaglev_fire", "hifive_unmatched", "raspberrypi5_original_method"]
+    boards = [ "keystone_hybrid"]
     kernels = ["stock","realtime"]
     cpu = 4
 
     for board in boards:
 
         print(f'--- {board} ---')
-        target_path_stock = f"targets/{board}/{kernels[0]}"
-        data_stock = load(f"{target_path_stock}/logs/cyclictest.log", cpu)
+        target_path_stock = f"results/{board}/{kernels[0]}"
+        target_name_prefix = f"{board}_{kernels[0]}_1"
+        data_stock = load(f"{target_path_stock}/{target_name_prefix}_cyclictest.log", cpu)
 
-        target_path_rt = f"targets/{board}/{kernels[1]}"
-        data_rt = load(f"{target_path_rt}/logs/cyclictest.log", cpu)
+        target_path_rt = f"results/{board}/{kernels[1]}"
+        target_name_prefix_rt = f"{board}_{kernels[1]}_1"
+        data_rt = load(f"{target_path_rt}/{target_name_prefix_rt}_cyclictest.log", cpu)
 
         ax = draw_hist(data1=data_stock, data2=data_rt, label1= f"{kernels[0]}", label2=f"{kernels[1]}")
 
-        save(ax, board, "images")
+        save(ax, f"{board}_histo", f"results/{board}")
 
         ax.clear()
 
@@ -96,22 +98,5 @@ if __name__ == "__main__":
     
 
     
-    questions = [
-        inquirer.Text('target_name', message="Enter the target name", default="hifive_unmatched"),
-        inquirer.Text('target_type', message="Enter the target type", default="stock"),
-        inquirer.Text('cpu', message="Enter the number of CPUs", default="4"),
-    ]
-    answers = inquirer.prompt(questions)
-    args = argparse.Namespace(**answers)
-    args.cpu = int(args.cpu)
-
-    target_path = f"targets/{args.target_name}/{args.target_type}"
-
-    data = load(f"{target_path}/logs/cyclictest.log", args.cpu)
-    plot = draw_hist(data)
-    #plot.set_title(f"{args.target_name}\n{args.target_type}")
-    save(plot, f"{args.target_name}_{args.target_type}", f"{target_path}/images")
-    plt.clf()
-
 
 
