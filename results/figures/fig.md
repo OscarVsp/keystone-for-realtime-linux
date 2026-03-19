@@ -3,7 +3,7 @@
 
 ### Stock vs RT
 
-![alt text](hifive_unmatched_stock_vs_realtime.png)
+![alt text](linux_stock_vs_realtime_normalized.png)
 
 
 ## Keystone Mixted
@@ -14,25 +14,25 @@
 
 ### With vs without keystone (rt)
 
-![alt text](keystone_realtime_linux_vs_mixted.png)
+![alt text](keystone_realtime_linux_vs_mixted_normalized_normalized.png)
 
 
 ## Hifive Hybrid
 
 ### Stock vs RT (1 thread)
 
-![alt text](keystone_hybrid_stock_vs_realtime_1t.png)
+![alt text](keystone_hybrid_stock_vs_realtime_1t_normalized.png)
 
 ### RT 1 thread vs RT 2 threads
 
-![alt text](keystone_hybrid_realtime_1t_vs_2t.png)
+![alt text](keystone_hybrid_realtime_1t_vs_2t_normalized.png)
 
 ### Linux process vs keystone enclaves (rt)
 
-![alt text](keystone_realtime_mixted_vs_hybrid.png)
+![alt text](keystone_realtime_mixted_vs_hybrid_normalized.png)
 
 ### Linux process vs keystone enclaves (stock)
 
-![alt text](keystone_stock_mixted_vs_hybrid.png)
+![alt text](keystone_stock_mixted_vs_hybrid_normalized.png)
 
 
