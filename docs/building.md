@@ -26,13 +26,13 @@ The buildroot configs are located in [overlays/keystone/configs](keystone-rt/ove
 They can be edited using the following commands
 
 ```bash
-make KEYSTONE_PLATFORM=hifive_unmatched -C keystone-rt buildroot-configure
+make KEYSTONE_PLATFORM=hifive_unmatched buildroot-configure
 ```
 
 and
 
 ```bash
-make RT=y KEYSTONE_PLATFORM=hifive_unmatched -C keystone-rt buildroot-configure
+make RT=y KEYSTONE_PLATFORM=hifive_unmatched buildroot-configure
 ```
 
 The respective linux config are located in [overlays/keystone/board/sifive/hifive-unmatched](keystone-rt/overlays/keystone/board/sifive/hifive-unmatched) under `linux-sifive-unmatched-defconfig` and `linux-sifive-unmatched-rt-defconfig`.
@@ -40,13 +40,13 @@ The respective linux config are located in [overlays/keystone/board/sifive/hifiv
 They can be edited using the following commands
 
 ```bash
-make KEYSTONE_PLATFORM=hifive_unmatched -C keystone-rt linux-configure
+make KEYSTONE_PLATFORM=hifive_unmatched linux-configure
 ```
 
 and
 
 ```bash
-make RT=y KEYSTONE_PLATFORM=hifive_unmatched -C keystone-rt linux-configure
+make RT=y KEYSTONE_PLATFORM=hifive_unmatched linux-configure
 ```
 
 For more information on the available commands and arguments, see the [keystone documentation](https://docs.keystone-enclave.org/en/latest/Getting-Started/QEMU-Compile-Sources.html)
@@ -57,12 +57,12 @@ For more information on the available commands and arguments, see the [keystone 
 To build the system without PREEMPT_RT
 
 ```bash
-make KEYSTONE_PLATFORM=hifive_unmatched -C keystone-rt
+make KEYSTONE_PLATFORM=hifive_unmatched
 ```
 To build the system with PREEMPT_RT
 
 ```bash
-make RT=y KEYSTONE_PLATFORM=hifive_unmatched -C keystone-rt
+make RT=y KEYSTONE_PLATFORM=hifive_unmatched
 ```
 
 The sdcard.img will be located in the `keystone-rt/(...)/buildroot.build/images/`
