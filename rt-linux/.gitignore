@@ -1,4 +1,0 @@
-.venv/*
-.vscode/*
-!.vscode/tasks.json
-*.log
