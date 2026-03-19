@@ -1,12 +1,11 @@
 #!/bin/bash
 
 PORT=5201
-IP="192.168.1.211"
+IP="192.168.1.165"
 
-# Parse command-line arguments
 while [ "$#" -gt 0 ]; do
   case "$1" in
-  -i)
+    -i)
       read -p "IP adress to connect to? " IP
       if [[ "$IP" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
         IFS='.' read -r i1 i2 i3 i4 <<< "$ip"

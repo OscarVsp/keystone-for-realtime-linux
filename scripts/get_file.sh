@@ -1,7 +1,7 @@
 #!/usr/bin/expect -f
 
 set timeout 60
-set keystone_ip 192.168.1.213
+set keystone_ip 192.168.178.180
 set password sifive
 set filename cyclictest.log
 
