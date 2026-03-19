@@ -103,14 +103,15 @@ def save(ax, name, path):
 if __name__ == "__main__":
 
     x_log = True
-    figure_dir = "results/figures"
+    result_dir = "results"
+    figure_dir = f"{result_dir}/figures"
 
     # Hifive Unmtached
     print(f'--- Linux ---')
     print(" stock")
-    data_hifive_unmatched_stock = load(f"results/hifive_unmatched/stock/hifive_unmatched_stock_cyclictest.log", start_skip=1000)
+    data_hifive_unmatched_stock = load(f"{result_dir}/hifive_unmatched/stock/hifive_unmatched_stock_cyclictest.log", start_skip=1000)
     print(" realtime")
-    data_hifive_unmatched_rt = load(f"results/hifive_unmatched/realtime/hifive_unmatched_realtime_cyclictest.log", start_skip=1000)
+    data_hifive_unmatched_rt = load(f"{result_dir}/hifive_unmatched/realtime/hifive_unmatched_realtime_cyclictest.log", start_skip=1000)
 
     ax = draw_hist(datas=[data_hifive_unmatched_stock, data_hifive_unmatched_rt], labels= [f"stock",f"preempt-rt"], bins=50, unit='us', x_log=x_log)
     save(ax, f"linux_stock_vs_realtime_normalized", figure_dir)
@@ -119,9 +120,9 @@ if __name__ == "__main__":
     # Keystone mixted
     print(f'--- keystone Mixted ---')
     print(" stock")
-    data_keystone_mixted_stock = load(f"results/keystone_mixted/stock/keystone_mixted_stock_cyclictest.log", start_skip=1000)
+    data_keystone_mixted_stock = load(f"{result_dir}/keystone_mixted/stock/keystone_mixted_stock_cyclictest.log", start_skip=1000)
     print(" realtime")
-    data_keystone_mixted_rt = load(f"results/keystone_mixted/realtime/keystone_mixted_realtime_cyclictest.log", start_skip=1000)
+    data_keystone_mixted_rt = load(f"{result_dir}/keystone_mixted/realtime/keystone_mixted_realtime_cyclictest.log", start_skip=1000)
 
     ax = draw_hist(datas=[data_keystone_mixted_stock, data_keystone_mixted_rt], labels=[f"stock", f"preempt-rt"], bins=50, unit='us', x_log=x_log)
     save(ax, f"keystone_mixted_stock_vs_realtime_normalized", figure_dir)
@@ -134,7 +135,7 @@ if __name__ == "__main__":
     # Enclave startup
     print(f'--- keystone enclave startup ---')
     print(" stock")
-    data_keystone_enclave_startup = load(f"results/enclave-startup.log", start_skip=0,skiprows=0)
+    data_keystone_enclave_startup = load(f"{result_dir}/enclave-startup.log", start_skip=0,skiprows=0)
     ax = draw_hist(datas=[data_keystone_enclave_startup], labels=[f"startup"], bins=50, unit='us', x_log=x_log, bin_edges=np.logspace(np.log10(740000), np.log10(790000), 51))
     save(ax, f"keystone_enclave_startup", figure_dir)
     ax.clear()
@@ -142,13 +143,13 @@ if __name__ == "__main__":
     # Keystone hybrid
     print(f'--- keystone Hybrid ---')
     print(" stock 1th")
-    data_keystone_hybrid_1_stock = load(f"results/keystone_hybrid/stock/keystone_hybrid_stock_1_cyclictest.log", start_skip=0)
+    data_keystone_hybrid_1_stock = load(f"{result_dir}/keystone_hybrid/stock/keystone_hybrid_stock_1_cyclictest.log", start_skip=0)
     print(" stock 2th")
-    data_keystone_hybrid_2_stock = load(f"results/keystone_hybrid/stock/keystone_hybrid_stock_2_cyclictest.log", start_skip=0)
+    data_keystone_hybrid_2_stock = load(f"{result_dir}/keystone_hybrid/stock/keystone_hybrid_stock_2_cyclictest.log", start_skip=0)
     print(" realtime 1th")
-    data_keystone_hybrid_1_rt = load(f"results/keystone_hybrid/realtime/keystone_hybrid_realtime_1_cyclictest.log", start_skip=0)
+    data_keystone_hybrid_1_rt = load(f"{result_dir}/keystone_hybrid/realtime/keystone_hybrid_realtime_1_cyclictest.log", start_skip=0)
     print(" realtime 2th")
-    data_keystone_hybrid_2_rt = load(f"results/keystone_hybrid/realtime/keystone_hybrid_realtime_2_cyclictest.log", start_skip=0)
+    data_keystone_hybrid_2_rt = load(f"{result_dir}/keystone_hybrid/realtime/keystone_hybrid_realtime_2_cyclictest.log", start_skip=0)
 
     ax = draw_hist(datas=[data_keystone_hybrid_1_stock, data_keystone_hybrid_1_rt], labels=[f"stock", f"preempt-rt"], bins=50, unit='us', x_log=x_log)
     save(ax, f"keystone_hybrid_stock_vs_realtime_1t_normalized", figure_dir)
