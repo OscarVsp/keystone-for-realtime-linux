@@ -1,9 +1,14 @@
 # Preparing the board
 
+This contains instrution about how to boot the HiFive Unmatched Rev. B board with the system on a µSD card.
+
+For more detail about the board requirement (power, cooling, ...), see the Sifive ["Getting Started Guide"](https://sifive.cdn.prismic.io/sifive/Z5KCu5bqstJ99zIu_hifive-unmatched-revb-gsg-v1p6_EN.pdf)
+
 ## Flashing the image
 
-If you are using the provided ready-to-use image, you can find them under TODO.
-If you are building the image yourself, the images will be generated under `keystone-rt/(...)/buildroot.build/images/sdcard.img`.
+- If you are using the prebuilt image, you can find them under TODO.
+
+- If you are building the image yourself, the images will be generated under `keystone-rt/(...)/buildroot.build/images/sdcard.img`.
 
 
 You can flash them into an µSD card using the following command.
@@ -27,4 +32,4 @@ Once the sd card in plugged in and the HiFive Unmatched board is powered up, you
 
 The root password is `hifive`.
 
-See [docs/running-the-experiments.md](docs/running-the-experiments.md) to run the experiment.
+See [docs/running-the-experiments.md](running-the-experiments.md) to run the experiment.
