@@ -86,3 +86,4 @@ rt-linux/targets/*/*/output/
 
 *.log
 *.img
+.venv/
