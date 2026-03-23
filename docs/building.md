@@ -1,8 +1,22 @@
 # Building 
 
+The build process of keystone use Buildroot. For fresh install, the initial build can be very long, depending on your internet connection, because it has to download all required packages, including the toolchain.
+
+Prebuilt image for HiFive Unmatched are available TODO, ready to be flash on µSD card.
+
+While Keystone originally support both QEMU and HiFive Unmatched Rev. B platform, this work currently only support HiFiuve Unmatched Rev. B.
+
+<details>
+
+> This is due to the version bump of buildroot/Linux kernel which introduced a few incompatibilities in the builds. We fixed thoses necessary for HiFive Unmatched but were not able to totally fix QEMU and while the build process succed, there is currently still a crash at boot.
+
+</details>
+
 ## Requirement 
 
-Keystone documentation recommand using Ubuntu 16.04/18.04/20.04 and derivative. This artifact has been tested using Ubuntu 20.04.6.
+Keystone documentation recommand using Ubuntu 16.04/18.04/20.04 and derivative. This artifact has been tested on Ubuntu 20.04.6.
+
+To reduce the build time, it is recommanded the most cores and RAM possible. We tested on a 16 cores / 64 GB system that already had all packages cached (no download needed). Building process for both variants took about 
 
 The following dependencies are required to build the systems using buildroot
 
@@ -18,10 +32,6 @@ device-tree-compiler expect makeself unzip cpio rsync cmake ninja-build p7zip-fu
 
 ## Platform and variant selection
 
-While Keystone originally support both QEMU and HiFive Unmatched Rev. B platform, this work currently only support HiFiuve Unmatched Rev. B.
-
-
-> This is due to the version bump of buildroot/Linux kernel which introduced a few incompatibilities in the builds. We fixed thoses necessary for HiFive Unmatched but were not able to totally fix QEMU and while the build process succed, there is currently still a crash at boot.
 
 The platform is selected using the `KEYSTONE_PLATFORM` variable. When running from this root directory, it is set to `KEYSTONE_PLATFORM=hifive_unmatched` by default.
 
@@ -39,7 +49,8 @@ make RT=y
 
 The sdcard.img will be located in the `keystone-rt/(...)/buildroot.build/images/sdcard.img`
 
-First build will that a lot of time because buildroot has to download and build all the toolchain/kernel/subsystel/package. These are being re-used for later build.
+Once the image ready, see [docs/preparing-the-boards.md](preparing-the-boards.md) to run them on a HiFive Unmatched board.
+
 
 ## Configurations
 
@@ -63,6 +74,7 @@ Depending on what you have change, the target may need a global rebuild or not. 
 
 ## Advanced buildroot commands
 
-To acces all buildroot commands, you need to change the cwd to `cd keystone-rt` (or directly call the [keystone-rt/Makefile](keystone-rt/Makefile) using `make -C keystone-rt`). Here you need to manually set `KEYSTONE_PLATFORM=hifive_unmatched` then you can use the `BUILDROOT_TARGET=...`to call specific buildroot commands.
+To acces all buildroot commands, you need to change the cwd to `cd keystone-rt` (or directly call the [keystone-rt/Makefile](keystone-rt/Makefile) using `make -C keystone-rt`). You need to manually set `KEYSTONE_PLATFORM=hifive_unmatched` and you can use the `BUILDROOT_TARGET=...` to call specific buildroot commands.
 
 For more information on the available commands and arguments, see the [keystone documentation](https://docs.keystone-enclave.org/en/latest/Getting-Started/QEMU-Compile-Sources.html) and [Buildroot manual](https://docs.keystone-enclave.org/en/latest/Getting-Started/QEMU-Compile-Sources.html)
+
