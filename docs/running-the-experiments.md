@@ -42,7 +42,7 @@ If the stressors are not skip (using `--skip-load`), it will as to start the ipe
 
 The latencies are recorded in the `cyclictest.log` file, starting directly after the start of the stressors. During the compilation of the graph, the first X sample can be remove to exclu the imapct of a transission periode.
 
-### Experiment 3
+## Experiment 3
 
 This experiment measure the startup scheduling latencies of keystone enclave spawn from high priority process. A modified version of cyclictest is used insided an enclave to measure the latencies while iperf3 and stress-ng put pressurs on the system.
 
