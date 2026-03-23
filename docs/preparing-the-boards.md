@@ -19,7 +19,7 @@ sudo dd if=images/hifive_unmatched64.img of=/path/to/sd/card bs=1M status=progre
 
 ## Hifive Unmatched 
 
-To boot from the SD card, the physical boot mode DIP switches `MSEL[3:0]` need to be set to `1001`
+To boot from the SD card, the physical boot mode DIP switches `MSEL[3:0]` need to be set to `0100`
 
 ![alt text](/figures/MSEL.png)
 
@@ -30,6 +30,6 @@ Once the sd card in plugged in and the HiFive Unmatched board is powered up, you
 
 `sudo screen -L /path/to/dev 115200`
 
-The root password is `hifive`.
+The root password is `sifive`.
 
 See [docs/running-the-experiments.md](running-the-experiments.md) to run the experiment.
