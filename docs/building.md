@@ -4,8 +4,6 @@
 
 Keystone documentation recommand using Ubuntu 16.04/18.04/20.04 and derivative. This artifact has been tested using Ubuntu 20.04.6.
 
-If you are using newer system, make sure to configure GCC to use GCC 14 when building keystone or you may encounter compilation errors during buildroot configuration.
-
 The following dependencies are required to build the systems using buildroot
 
 ```bash
@@ -18,51 +16,53 @@ pkg-config libglib2.0-dev libpixman-1-dev libssl-dev screen \
 device-tree-compiler expect makeself unzip cpio rsync cmake ninja-build p7zip-full libncurses-dev
 ```
 
-## Configurations
+## Platform and variant selection
 
-The buildroot configs are located in [overlays/keystone/configs](keystone-rt/overlays/keystone/configs) under `riscv64_hifive_unmatched_defconfig` and `riscv64_hifive_unmatched_rt_defconfig`.
+While Keystone originally support both QEMU and HiFive Unmatched Rev. B platform, this work currently only support HiFiuve Unmatched Rev. B.
 
 
-They can be edited using the following commands
+> This is due to the version bump of buildroot/Linux kernel which introduced a few incompatibilities in the builds. We fixed thoses necessary for HiFive Unmatched but were not able to totally fix QEMU and while the build process succed, there is currently still a crash at boot.
 
-```bash
-make KEYSTONE_PLATFORM=hifive_unmatched buildroot-configure
-```
+The platform is selected using the `KEYSTONE_PLATFORM` variable. When running from this root directory, it is set to `KEYSTONE_PLATFORM=hifive_unmatched` by default.
 
-and
-
-```bash
-make RT=y KEYSTONE_PLATFORM=hifive_unmatched buildroot-configure
-```
-
-The respective linux config are located in [overlays/keystone/board/sifive/hifive-unmatched](keystone-rt/overlays/keystone/board/sifive/hifive-unmatched) under `linux-sifive-unmatched-defconfig` and `linux-sifive-unmatched-rt-defconfig`.
-
-They can be edited using the following commands
-
-```bash
-make KEYSTONE_PLATFORM=hifive_unmatched linux-configure
-```
-
-and
-
-```bash
-make RT=y KEYSTONE_PLATFORM=hifive_unmatched linux-configure
-```
-
-For more information on the available commands and arguments, see the [keystone documentation](https://docs.keystone-enclave.org/en/latest/Getting-Started/QEMU-Compile-Sources.html)
-
+The system variant use the `RT=y/n` flag (`RT=n` by default) to know whether to build the stock version (without the PREEMPT\_RT patches) of the real-time one.
 
 ## Build
 
-To build the system without PREEMPT_RT
+Current configuration correspond to the system used for the article. If you want to modified them before building the systems, see [## Configurations](##Configurations).
+
+Set the `RT=y/n` depending on which variant you want to build.
 
 ```bash
-make KEYSTONE_PLATFORM=hifive_unmatched
+make RT=y
 ```
-To build the system with PREEMPT_RT
+
+The sdcard.img will be located in the `keystone-rt/(...)/buildroot.build/images/sdcard.img`
+
+First build will that a lot of time because buildroot has to download and build all the toolchain/kernel/subsystel/package. These are being re-used for later build.
+
+## Configurations
+
+The buildroot configuration can be edited using the following commands (change or remove the `RT` flag if necessary)
 
 ```bash
-make RT=y KEYSTONE_PLATFORM=hifive_unmatched
+make RT=y buildroot-configure
 ```
 
-The sdcard.img will be located in the `keystone-rt/(...)/buildroot.build/images/`
+The actual configs are located in [overlays/keystone/configs](keystone-rt/overlays/keystone/configs) under `riscv64_hifive_unmatched_defconfig` and `riscv64_hifive_unmatched_rt_defconfig`.
+
+The corresponding Linux configuration can be edited with
+
+```bash
+make RT=y linux-configure
+```
+
+The linux config are located in [overlays/keystone/board/sifive/hifive-unmatched](keystone-rt/overlays/keystone/board/sifive/hifive-unmatched) under `linux-sifive-unmatched-defconfig` and `linux-sifive-unmatched-rt-defconfig`.
+
+Depending on what you have change, the target may need a global rebuild or not. See the [Buildroot manual](https://docs.keystone-enclave.org/en/latest/Getting-Started/QEMU-Compile-Sources.html) for more explaination.
+
+## Advanced buildroot commands
+
+To acces all buildroot commands, you need to change the cwd to `cd keystone-rt` (or directly call the [keystone-rt/Makefile](keystone-rt/Makefile) using `make -C keystone-rt`). Here you need to manually set `KEYSTONE_PLATFORM=hifive_unmatched` then you can use the `BUILDROOT_TARGET=...`to call specific buildroot commands.
+
+For more information on the available commands and arguments, see the [keystone documentation](https://docs.keystone-enclave.org/en/latest/Getting-Started/QEMU-Compile-Sources.html) and [Buildroot manual](https://docs.keystone-enclave.org/en/latest/Getting-Started/QEMU-Compile-Sources.html)

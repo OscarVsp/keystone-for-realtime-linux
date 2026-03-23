@@ -4,15 +4,15 @@ All the figure are handle by the [results/generate-figures.py](results/generate-
 
 ## Requirements
 
-We sugest to first create a virtual environnement then instaling the requirements are follow 
+We sugest to first create a virtual environnement then instaling the requirements as follow 
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
-pip install -r results/requirements
+pip install -r results/requirements.txt
 ```
 
-## Configuration
+## Data
 
 The measurements made for the article are available in the [results/archive.tar.gz](results/archive.tar.gz) archive. The expected structure is the following:
 
@@ -28,13 +28,13 @@ The measurements made for the article are available in the [results/archive.tar.
 
 The bottom section of the [results/generate-figures.py](results/generate-figures.py) file contains the configuration to load each measurement files and create the figures.
 
+If you have generate you own data by running the experiment, either match the structure above or adapte the [results/generate-figures.py](results/generate-figures.py) script to point to you data.
+
 ## Usage
 
 You can called the script directly from the root dir as following:
 
 ```bash
-python results/generate-figures.py
+python3 results/generate-figures.py
 ```
-
 The figures will be generated into [results/figures](results/figure)
-
