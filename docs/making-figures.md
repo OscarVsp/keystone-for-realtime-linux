@@ -21,15 +21,32 @@ You can either:
 - Use the data from the article (provided in the [results/archive.tar.gz](../results/archive.tar.gz))
 - Use the data you generated from your own experiment.
 
-The expected structure is the following:
+The structure expected by the script is the following:
 
 ```
 .
 └── results/
-    ├── figures/
-    ├── hifive_unmatched/
-    ├── keystone-hybrid/
-    ├── keystone-mixted/
+    ├── linux/
+    │   ├── realtime/
+    │   │   └── cyclictest.log
+    │   └── stock/
+    │       └── cyclictest.log
+    ├── mixted/
+    │   ├── realtime/
+    │   │   └── cyclictest.log
+    │   └── stock/
+    │       └── cyclictest.log
+    ├── real-time enclave/
+    │   ├── 1 thread/
+    │   │   ├── realtime/
+    │   │   │   └── cyclictest.log
+    │   │   └── stock/
+    │   │       └── cyclictest.log
+    │   └── 2 threads/
+    │       ├── realtime/
+    │       │   └── cyclictest.log
+    │       └── stock/
+    │           └── cyclictest.log
     └── enclave-startup.log
 ```
 

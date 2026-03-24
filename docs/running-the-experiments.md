@@ -14,7 +14,7 @@ When starting the experiment, the script will ask you to start the iperf3 client
 iperf3 -c 192.168.1.X -p 5201 -w 64k -P 100 -t 5800
 ```
 
-## Experiment 1
+## Experiment 1 - Linux
 
 This experiment measures the startup scheduling latencies of high-priority Linux processes during high load. Cyclictest is used to measure the latencies while iperf3 and stress-ng put pressure on the system.
 
@@ -28,7 +28,7 @@ If the stressors are not skipped (using `--skip-load`), it will ask to start the
 
 The latencies are recorded in the `cyclictest.log` file, starting directly after the start of the stressors. During the compilation of the graph, the first X samples can be remove to exclude the impact of a transition period (see [docs/making-figures.md](making-figures.md))
 
-## Experiment 2
+## Experiment 2 - Mixted
 
 This experiment is basically the same as the previous one, but with the introduction of Keystone enclaves in the background.
 
@@ -42,7 +42,7 @@ If the stressors are not skipped (using `--skip-load`), it will ask to start the
 
 The latencies are recorded in the `cyclictest.log` file, starting directly after the start of the stressors. During the compilation of the graph, the first X samples can be remove to exclude the impact of a transition period (see [docs/making-figures.md](making-figures.md))
 
-## Experiment 3
+## Experiment 3 - Real-time Enclaves
 
 This experiment measures the startup scheduling latencies of Keystone enclaves spawned from high priority processes. A modified version of cyclictest is used insid an enclave to measure the latencies while iperf3 and stress-ng put pressure on the system.
 

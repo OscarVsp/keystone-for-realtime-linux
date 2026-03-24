@@ -128,6 +128,9 @@ if __name__ == "__main__":
 
     # Global parameters
     result_dir = "results"
+    linux_dir = "linux"
+    mixted_dir = "mixted"
+    rt_dir = "real-time enclave"
     figure_dir = f"{result_dir}/figures"
     colors = [ "#163F5F", "#4793CA", "#C56824", "#FFCB9F", "#572F37", "#CC6D6F", "#38736B", "#B6DDD8"]
 
@@ -135,21 +138,21 @@ if __name__ == "__main__":
     print("--- Loading data ---")
 
     ## Hifive Unmtached
-    data_hifive_unmatched_stock = {'data':load(f"{result_dir}/hifive_unmatched/stock/hifive_unmatched_stock_cyclictest.log", start_skip=1000), "color":colors[0]}
-    data_hifive_unmatched_rt = {'data':load(f"{result_dir}/hifive_unmatched/realtime/hifive_unmatched_realtime_cyclictest.log", start_skip=1000), "color":colors[1]}
+    data_hifive_unmatched_stock = {'data':load(f"{result_dir}/{linux_dir}/stock/cyclictest.log", start_skip=1000), "color":colors[0]}
+    data_hifive_unmatched_rt = {'data':load(f"{result_dir}/{linux_dir}/realtime/cyclictest.log", start_skip=1000), "color":colors[1]}
     
     ## Keystone mixted
-    data_keystone_mixted_stock = {'data':load(f"{result_dir}/keystone_mixted/stock/keystone_mixted_stock_cyclictest.log", start_skip=1000), "color":colors[2]}
-    data_keystone_mixted_rt = {'data':load(f"{result_dir}/keystone_mixted/realtime/keystone_mixted_realtime_cyclictest.log", start_skip=1000), "color":colors[3]}
+    data_keystone_mixted_stock = {'data':load(f"{result_dir}/{mixted_dir}/stock/cyclictest.log", start_skip=1000), "color":colors[2]}
+    data_keystone_mixted_rt = {'data':load(f"{result_dir}/{mixted_dir}/realtime/cyclictest.log", start_skip=1000), "color":colors[3]}
 
     ## Enclave startup
     data_keystone_enclave_startup = {'data':load(f"{result_dir}/enclave-startup.log", start_skip=0,skiprows=0), "color":"#477E3E"}
 
     ## Keystone hybrid
-    data_keystone_hybrid_1_stock = {'data':load(f"{result_dir}/keystone_hybrid/stock/keystone_hybrid_stock_1_cyclictest.log", start_skip=0), "color":colors[4]}
-    data_keystone_hybrid_1_rt = {'data':load(f"{result_dir}/keystone_hybrid/realtime/keystone_hybrid_realtime_1_cyclictest.log", start_skip=0), "color":colors[5]}
-    data_keystone_hybrid_2_stock = {'data':load(f"{result_dir}/keystone_hybrid/stock/keystone_hybrid_stock_2_cyclictest.log", start_skip=0), "color":colors[6]}
-    data_keystone_hybrid_2_rt = {'data':load(f"{result_dir}/keystone_hybrid/realtime/keystone_hybrid_realtime_2_cyclictest.log", start_skip=0), "color":colors[7]}
+    data_keystone_hybrid_1_stock = {'data':load(f"{result_dir}/{rt_dir}/1 thread/stock/cyclictest.log", start_skip=0), "color":colors[4]}
+    data_keystone_hybrid_1_rt = {'data':load(f"{result_dir}/{rt_dir}/1 thread/realtime/cyclictest.log", start_skip=0), "color":colors[5]}
+    data_keystone_hybrid_2_stock = {'data':load(f"{result_dir}/{rt_dir}/2 threads/stock/cyclictest.log", start_skip=0), "color":colors[6]}
+    data_keystone_hybrid_2_rt = {'data':load(f"{result_dir}/{rt_dir}/2 threads/realtime/cyclictest.log", start_skip=0), "color":colors[7]}
    
     # Generating graph
     print("--- Generating Graphs ---")
