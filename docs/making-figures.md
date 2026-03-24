@@ -1,10 +1,10 @@
 # Making figures
 
-All the figure are handle by the [results/generate-figures.py](../results/generate-figures.py) python scripts.
+All the figures are handled by the [results/generate-figures.py](../results/generate-figures.py) Python scripts.
 
 ## Requirements
 
-We sugest to first create a virtual environnement (`sudo apt install python3-venv` if you don't have python-venv yet) then instaling the requirements as follow 
+We suggest to first create a virtual environement (`sudo apt install python3-venv` if you don't have python-venv yet) then installing the requirements as follows:
 
 ```bash
 python3 -m venv .venv
@@ -14,12 +14,12 @@ pip install -r results/requirements.txt
 
 ## Data
 
-The bottom section of the [results/generate-figures.py](../results/generate-figures.py) file contains the configuration to load each measurement files and create the figures.
+The bottom section of the [results/generate-figures.py](../results/generate-figures.py) file contains the configuration to load each measurement file and create the figures.
 
 You can either:
 
 - Use the data from the article (provided in the [results/archive.tar.gz](../results/archive.tar.gz))
-- Use the data you generated from your own experiment
+- Use the data you generated from your own experiment.
 
 The expected structure is the following:
 
@@ -33,19 +33,28 @@ The expected structure is the following:
     └── enclave-startup.log
 ```
 
-If you use the data provided, you can simply extract the archive using:
+If you use the data provided, you can simply extract the archive using the following command, and the structure should be correct.
 
 ```bash
 tar -xvzf results/archive.tar.gz -C results
 ```
 
-If you have generate you own data by running the experiment, either match the structure above or adapte the [results/generate-figures.py](../results/generate-figures.py) script to point to you data.
+If you have generated your own data by running the experiment, either match the structure above or adapt the [results/generate-figures.py](../results/generate-figures.py) script to point to your data.
 
 ## Usage
 
-You can called the script directly from the root dir as following:
+Make sure you are using the virtual environnement:
+
+```bash
+source .venv/bin/activate
+```
+
+You can call the script directly from the root directory as follows:
 
 ```bash
 python3 results/generate-figures.py
 ```
-The figures will be generated into `results/figures`
+
+The figures will be generated into `results/figures`.
+
+You can easily visualized them all on [results/figures/fig.md](../results/figures/fig.md).
